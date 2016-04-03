@@ -1,6 +1,7 @@
 This is instructions of creating docker image similar to one used on Travis.
 
 Install docker, e.g. Ubuntu:
+
 * https://docs.docker.com/engine/installation/linux/ubuntulinux/
 
 Use ``Dockerfile`` to build image:
@@ -113,6 +114,7 @@ Run some test:
   ...
 
 Note that ``Toolchain-ID: 7a9f5db`` match one on Travis perfectly:
+
 * https://travis-ci.org/forexample/hunter-simple/jobs/118003296
 
 Pushing image to Docker Hub:
@@ -122,7 +124,7 @@ Pushing image to Docker Hub:
   > docker login
   > docker push ruslo/hunter-travis
 
-Pulling image from Docker Hub is quite the same as running it:
+Pulling image from Docker Hub is quite the same as running image since ``ruslo/hunter-travis`` is effectively similar to ``hub.docker.com/ruslo/hunter-travis``:
 
 .. code-block:: shell
   
