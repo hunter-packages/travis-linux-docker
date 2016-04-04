@@ -152,3 +152,15 @@ Building remotely
 -----------------
 
 Since push failed for me I've found alternative way for image creating. Can be done using remote building on https://quay.io. You just need to create new project and run build with Dockerfile from this repo.
+
+You can pull created image by:
+
+.. code-block:: shell
+
+  > docker pull quay.io/ruslo/hunter-travis
+  
+and run it:
+
+.. code-block:: shell
+
+  > docker run --workdir /home/travis -it quay.io/ruslo/hunter-travis bash
