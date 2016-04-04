@@ -147,3 +147,8 @@ Pulling image from Docker Hub is quite the same as running image since ``ruslo/h
 .. code-block:: shell
   
   > docker run --workdir /home/travis -it ruslo/hunter-travis bash
+
+Building remotely
+-----------------
+
+Since push failed for me I've found alternative way for image creating. Can be done using remote building on https://quay.io. You just need to create new project and run build with Dockerfile from this repo.
