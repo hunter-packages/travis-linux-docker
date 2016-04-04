@@ -1,8 +1,14 @@
 This is instructions of creating docker image similar to one used on Travis.
 
+Install
+-------
+
 Install docker, e.g. Ubuntu:
 
 * https://docs.docker.com/engine/installation/linux/ubuntulinux/
+
+Build
+-----
 
 Use ``Dockerfile`` to build image:
 
@@ -53,6 +59,9 @@ The last line contains resulting docker ``image-id``:
   ...
   ruslo/hunter-travis            latest              42f0c5f04ec4        26 seconds ago      5.916 GB
   ...
+
+Run
+---
 
 Start new docker container from this image:
 
@@ -116,6 +125,15 @@ Run some test:
 Note that ``Toolchain-ID: 7a9f5db`` match one on Travis perfectly:
 
 * https://travis-ci.org/forexample/hunter-simple/jobs/118003296
+
+Push
+----
+
+**Warning**: doesn't work for me! Error message::
+
+  could not verify layer data for: sha256:.... This may be because internal files
+  in the layer store were modified. Re-pulling or rebuilding this image may
+  resolve the issue
 
 Pushing image to Docker Hub:
 
