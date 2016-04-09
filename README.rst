@@ -102,7 +102,9 @@ container start, you have to do it manually:
   > export TOOLCHAIN=... # toolchain to test
   > install-ci-dependencies.py # check if tools from Polly updated
 
-If there will be significant changes introduced new docker image can be updated by:
+*Warning: branch develop set as a default for both Hunter and Polly keep this fact it mind!*
+
+If there will be significant changes introduced and new docker image pushed then you can do:
 
 .. code-block:: shell
 
