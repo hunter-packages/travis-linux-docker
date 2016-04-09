@@ -14,7 +14,7 @@ Use ``Dockerfile`` to build image:
 
 .. code-block:: shell
 
-  > docker build -t ruslo/hunter-travis .
+  > docker build -t quay.io/ruslo/hunter-travis .
   Sending build context to Docker daemon 7.168 kB
   Step 1 : FROM quay.io/travisci/travis-ruby
    ---> e41062702ee0
@@ -57,7 +57,7 @@ The last line contains resulting docker ``image-id``:
   > docker images
   REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
   ...
-  ruslo/hunter-travis            latest              42f0c5f04ec4        26 seconds ago      5.916 GB
+  quay.io/ruslo/hunter-travis            latest              42f0c5f04ec4        26 seconds ago      5.916 GB
   ...
 
 Run
@@ -67,7 +67,7 @@ Start new docker container from this image:
 
 .. code-block:: shell
 
-  > docker run --workdir /home/travis -it ruslo/hunter-travis bash
+  > docker run -it quay.io/ruslo/hunter-travis bash
 
 Check installed tools:
 
@@ -89,34 +89,33 @@ Check installed tools:
 
   > python3 -c 'import requests'
 
-Since version of Polly used from branch ``master`` it doesn't make sense to
-add fixed version to image (it changes from time to time).
+Update
+------
 
-Can be installed manually:
-
-.. code-block:: shell
-
-  > git clone https://github.com/ruslo/polly
-  > export PATH="`pwd`/polly/bin":$PATH
-  > which build.py
-  /home/travis/polly/bin/build.py
-
-Install CMake version used for testing:
+Note that image is static in sense that there is no git repository fetch on
+container start, you have to do it manually:
 
 .. code-block:: shell
 
-  > install-ci-dependencies.py
-  > export PATH="`pwd`/_ci/cmake/bin":$PATH
-  > which cmake
-  > cmake --version
+  > (cd polly && git pull)
+  > (cd hunter && git pull)
+  > export TOOLCHAIN=... # toolchain to test
+  > install-ci-dependencies.py # check if tools from Polly updated
+
+If there will be significant changes introduced new docker image can be updated by:
+
+.. code-block:: shell
+
+  > docker pull quay.io/ruslo/hunter-travis
+
+Testing
+-------
 
 Run some test:
 
 .. code-block:: shell
 
-  > git clone https://github.com/ruslo/hunter
   > cd hunter
-  > git submodule update --init gate
   > TOOLCHAIN=gcc-4-8 PROJECT_DIR=examples/GTest ./jenkins.py --verbose --clear-except
   ...
   -- [hunter] [ Hunter-ID: ... | Config-ID: ... | Toolchain-ID: 7a9f5db ]
@@ -163,4 +162,4 @@ and run it:
 
 .. code-block:: shell
 
-  > docker run --workdir /home/travis -it quay.io/ruslo/hunter-travis bash
+  > docker run -it quay.io/ruslo/hunter-travis bash
