@@ -89,6 +89,20 @@ Check installed tools:
 
   > python3 -c 'import requests'
 
+Run GUI
+-------
+
+You can start GUI which use X11 by allowing connection to localhost and exporting DISPLAY:
+
+.. code-block:: shell
+
+  > xhost +
+  > docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix quay.io/ruslo/hunter-travis bash
+  travis@...:~$ firefox
+
+
+* http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/
+
 Update
 ------
 
