@@ -14,7 +14,12 @@ RUN sudo -E apt-get -yq update && sudo -E apt-get -yq --no-install-suggests \
     python3 \
     python3-setuptools \
     libstdc++-4.8-dev \
-    g++-4.8
+    g++-4.8 \
+    libegl1-mesa-dev \
+    libncurses5:i386 \
+    libstdc++6:i386 \
+    zlib1g:i386
+
 RUN easy_install3 --user requests
 
 # Install tools
