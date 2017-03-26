@@ -1,11 +1,14 @@
 # https://docs.travis-ci.com/user/common-build-problems/#Running-a-Container-Based-Docker-Image-Locally
-
 # Using tag from https://hub.docker.com/r/travisci/ci-garnet/tags/ because tag 'latest' not found
 FROM travisci/ci-amethyst:packer-1487189177
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
 USER travis
+
+RUN sudo apt-get install clang-3.5
+RUN which clang++-3.5
+RUN clang++-3.5 --version
 RUN pip3 install --user requests
 
 # Install tools
