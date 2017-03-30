@@ -1,3 +1,6 @@
+.. image:: https://quay.io/repository/ruslo/hunter-travis-trusty/status
+  :target: https://quay.io/repository/ruslo/hunter-travis-trusty?tab=builds
+
 This repository contains ``Dockerfile`` which can be used in ``docker build``
 command to create image similar to one that used while running Hunter builds on
 Travis CI Trusty.
