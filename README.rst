@@ -74,8 +74,8 @@ exporting DISPLAY:
 
 .. code-block:: shell
 
-  travis@d7593ec7547b:~$ xhost +
-  travis@d7593ec7547b:~$ docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix quay.io/ruslo/hunter-travis-trusty bash
+  > xhost +
+  > docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix quay.io/ruslo/hunter-travis-trusty bash
   travis@d7593ec7547b:~$ firefox
 
 
