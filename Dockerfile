@@ -14,6 +14,10 @@ USER travis
 
 ENV PATH /opt/python/3.5.2/bin:/usr/local/clang-3.5.0/bin:$PATH
 
+# Dependencies for Qt:
+# * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
+RUN sudo apt-get install -y libegl1-mesa-dev libgl1-mesa-dev libegl1-mesa-drivers
+
 RUN pip3 install --user requests
 
 # Install tools
