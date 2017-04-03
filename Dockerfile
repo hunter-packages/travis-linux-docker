@@ -18,6 +18,12 @@ ENV PATH /opt/python/3.5.2/bin:/usr/local/clang-3.5.0/bin:$PATH
 # * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
 RUN sudo apt-get install -y libegl1-mesa-dev libgl1-mesa-dev libegl1-mesa-drivers
 
+# Dependencies for Qt Android development:
+# * http://superuser.com/a/360398/252568
+RUN sudo dpkg --add-architecture i386
+RUN sudo apt-get update
+RUN sudo apt-get install libncurses5:i386 libstdc++6:i386 zlib1g:i386
+
 RUN pip3 install --user requests
 
 # Install tools
