@@ -112,12 +112,12 @@ Run some test:
   travis@d7593ec7547b:~$ cd hunter
   travis@d7593ec7547b:~$ TOOLCHAIN=gcc PROJECT_DIR=examples/GTest ./jenkins.py --verbose --clear-except
   ...
-  -- [hunter] [ Hunter-ID: ... | Config-ID: ... | Toolchain-ID: 7a9f5db ]
+  -- [hunter] [ Hunter-ID: ... | Config-ID: ... | Toolchain-ID: 8456c41 ]
   ...
 
-Note that ``Toolchain-ID: 7a9f5db`` match one on Travis perfectly:
+Note that ``Toolchain-ID: 8456c41`` match one on Travis perfectly:
 
-* https://travis-ci.org/forexample/hunter-simple/jobs/118003296
+* https://travis-ci.org/ingenue/hunter/jobs/217499907#L839
 
 Build
 -----
