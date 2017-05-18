@@ -18,6 +18,10 @@ ENV PATH /opt/python/3.5.2/bin:/usr/local/clang-3.5.0/bin:$PATH
 # * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
 RUN sudo apt-get install -y libegl1-mesa-dev libgl1-mesa-dev libegl1-mesa-drivers
 
+# Travis also install glu:
+# * https://github.com/travis-ci-tester/travis-test-linux-glu
+RUN sudo apt-get install -y libglu1-mesa-dev
+
 # Dependencies for Qt Android development:
 # * http://superuser.com/a/360398/252568
 RUN sudo dpkg --add-architecture i386
