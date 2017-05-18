@@ -119,6 +119,29 @@ Note that ``Toolchain-ID: 8456c41`` match one on Travis perfectly:
 
 * https://travis-ci.org/ingenue/hunter/jobs/217499907#L839
 
+Extra software
+--------------
+
+This ``.travis.yml`` code:
+
+.. code-block:: yaml
+
+  addons:
+    apt:
+      sources:
+        - ubuntu-toolchain-r-test
+      packages:
+        - g++-5
+        - gcc-5
+
+Equivalent to running next commands:
+
+.. code-block:: none
+
+  > sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  > sudo apt-get -y update # may fail with unrelated errors
+  > sudo apt-get -y install g++-5 gcc-5
+
 Build
 -----
 
