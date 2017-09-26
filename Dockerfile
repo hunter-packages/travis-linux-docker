@@ -12,6 +12,8 @@ MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
 USER travis
 
+RUN sudo apt-get update
+
 ENV PATH /usr/local/clang-3.9.0/bin:$PATH
 
 # Dependencies for Qt:
@@ -29,13 +31,6 @@ RUN sudo dpkg --add-architecture i386
 # Install pip3
 RUN sudo apt-get install -y python3-pip
 
-# TODO FIX, ignore errors for now
-# W: ... Signature by key ... uses weak digest algorithm (SHA1)
-# W: The repository 'http://ppa.launchpad.net/rwky/redis/ubuntu trusty Release' does not have a Release file.
-# E: Failed to fetch http://ppa.launchpad.net/rwky/redis/ubuntu/dists/trusty/main/binary-i386/Packages 404 Not Found
-# E: Failed to fetch http://ppa.launchpad.net/rwky/redis/ubuntu/dists/trusty/main/binary-amd64/Packages 404 Not Found
-# E: Some index files failed to download. They have been ignored, or old ones used instead.
-RUN sudo apt-get update || echo "Update failed"
 RUN sudo apt-get install libncurses5:i386 libstdc++6:i386 zlib1g:i386
 
 RUN pip3 install --user requests
