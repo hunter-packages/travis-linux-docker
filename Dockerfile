@@ -26,6 +26,9 @@ RUN sudo apt-get install -y libglu1-mesa-dev
 # * http://superuser.com/a/360398/252568
 RUN sudo dpkg --add-architecture i386
 
+# Install pip3
+RUN sudo apt-get install -y python3-pip
+
 # TODO FIX, ignore errors for now
 # W: ... Signature by key ... uses weak digest algorithm (SHA1)
 # W: The repository 'http://ppa.launchpad.net/rwky/redis/ubuntu trusty Release' does not have a Release file.
