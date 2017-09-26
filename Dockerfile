@@ -4,15 +4,15 @@
 # (see issue https://github.com/travis-ci/travis-ci/issues/7518)
 
 # Environment analyze:
-# * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/216185507
+# * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/279929194
 
-FROM travisci/ci-garnet:packer-1487190256
+FROM travisci/ci-minimal
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
 USER travis
 
-ENV PATH /opt/python/3.5.2/bin:/usr/local/clang-3.5.0/bin:$PATH
+ENV PATH /usr/local/clang-3.9.0/bin:$PATH
 
 # Dependencies for Qt:
 # * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
