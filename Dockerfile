@@ -6,7 +6,7 @@
 # Environment analyze:
 # * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/279929194
 
-FROM travisci/ci-minimal:packer-1468603994
+FROM travisci/ci-garnet:packer-1503972846
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
