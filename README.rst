@@ -1,6 +1,3 @@
-.. image:: https://quay.io/repository/ruslo/hunter-travis-trusty/status
-  :target: https://quay.io/repository/ruslo/hunter-travis-trusty?tab=builds
-
 This repository contains ``Dockerfile`` which can be used in ``docker build``
 command to create image similar to one that used while running Hunter builds on
 Travis CI Trusty.
@@ -19,12 +16,12 @@ Start new docker container from this image:
 
 .. code-block:: shell
 
-  > docker run -it quay.io/ruslo/hunter-travis-trusty bash
-  Unable to find image 'quay.io/ruslo/hunter-travis-trusty:latest' locally
+  > docker run -it ruslo/travis-linux-docker bash
+  Unable to find image 'ruslo/hunter-travis-trusty' locally
   latest: Pulling from ruslo/hunter-travis-trusty
   ...
   Digest: sha256:bd37b3d3c47e181ad1512c8393404fb33b7f20849d208152bb3d0d160ee574d3
-  Status: Downloaded newer image for quay.io/ruslo/hunter-travis-trusty:latest
+  Status: Downloaded newer image for ruslo/hunter-travis-trusty
   travis@d7593ec7547b:~$
 
 Check installed tools:
@@ -41,30 +38,30 @@ Check installed tools:
   warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
   travis@d7593ec7547b:~$ which clang++
-  /usr/local/clang-3.5.0/bin/clang++
+  /usr/local/clang-3.9.0/bin/clang++
 
   travis@d7593ec7547b:~$ clang++ --version
-  clang version 3.5.0 (tags/RELEASE_350/final)
+  clang version 3.9.0 (tags/RELEASE_390/final)
   Target: x86_64-unknown-linux-gnu
   Thread model: posix
 
   travis@d7593ec7547b:~$ which python3
-  /opt/python/3.5.2/bin/python3
+  /usr/bin/python3
 
   travis@d7593ec7547b:~$ python3 --version
-  Python 3.5.2
+  Python 3.4.3
 
   travis@d7593ec7547b:~$ which pip3
-  /opt/python/3.5.2/bin/pip3
+  /usr/bin/pip3
 
   travis@d7593ec7547b:~$ pip3 --version
-  pip 8.1.1 from /opt/python/3.5.2/lib/python3.5/site-packages (python 3.5)
+  pip 1.5.4 from /usr/lib/python3/dist-packages (python 3.4)
 
   travis@d7593ec7547b:~$ python3 -c 'import requests'
 
 Compare it with real Travis CI job:
 
-* https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/216185507
+* https://travis-ci.org/travis-ci-tester/travis-trusty-env/jobs/279929195
 
 Run GUI
 -------
@@ -75,7 +72,7 @@ exporting DISPLAY:
 .. code-block:: shell
 
   > xhost +
-  > docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix quay.io/ruslo/hunter-travis-trusty bash
+  > docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ruslo/hunter-travis-trusty bash
   travis@d7593ec7547b:~$ firefox
 
 
@@ -89,7 +86,7 @@ container start, you have to do it manually:
 
 .. code-block:: shell
 
-  
+
   travis@d7593ec7547b:~$ (cd polly && git pull)
   travis@d7593ec7547b:~$ (cd hunter && git pull)
   travis@d7593ec7547b:~$ export TOOLCHAIN=... # toolchain to test
@@ -100,7 +97,7 @@ then you can do:
 
 .. code-block:: shell
 
-  > docker pull quay.io/ruslo/hunter-travis-trusty
+  > docker pull ruslo/travis-linux-docker
 
 Testing
 -------
@@ -112,7 +109,7 @@ Run some test:
   travis@d7593ec7547b:~$ cd hunter
   travis@d7593ec7547b:~$ TOOLCHAIN=gcc PROJECT_DIR=examples/GTest ./jenkins.py --verbose --clear-except
   ...
-  -- [hunter] [ Hunter-ID: ... | Config-ID: ... | Toolchain-ID: 8456c41 ]
+  -- [hunter] [ Hunter-ID: ... | Toolchain-ID: 8456c41 | Config-ID: ... ]
   ...
 
 Note that ``Toolchain-ID: 8456c41`` match one on Travis perfectly:
@@ -128,8 +125,6 @@ This ``.travis.yml`` code:
 
   addons:
     apt:
-      sources:
-        - ubuntu-toolchain-r-test
       packages:
         - g++-5
         - gcc-5
@@ -138,8 +133,6 @@ Equivalent to running next commands:
 
 .. code-block:: none
 
-  > sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-  > sudo apt-get -y update # may fail with unrelated errors
   > sudo apt-get -y install g++-5 gcc-5
 
 Build
