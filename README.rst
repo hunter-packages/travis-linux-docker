@@ -14,7 +14,7 @@ Run
 
 Start new docker container from this image:
 
-.. code-block:: shell
+.. code-block:: none
 
   > docker run -it ruslo/travis-linux-docker bash
   Unable to find image 'ruslo/hunter-travis-trusty' locally
@@ -26,42 +26,43 @@ Start new docker container from this image:
 
 Check installed tools:
 
-.. code-block:: shell
+.. code-block:: none
 
-  travis@d7593ec7547b:~$ which g++
-  /usr/bin/g++
+  travis@9681b443a3fb:~$ which g++-5
+  /usr/bin/g++-5
 
-  travis@d7593ec7547b:~$ g++ --version
-  g++ (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
-  Copyright (C) 2013 Free Software Foundation, Inc.
+  travis@9681b443a3fb:~$ g++-5 --version
+  g++-5 (Ubuntu 5.4.1-2ubuntu1~14.04) 5.4.1 20160904
+  Copyright (C) 2015 Free Software Foundation, Inc.
   This is free software; see the source for copying conditions.  There is NO
   warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-  travis@d7593ec7547b:~$ which clang++
-  /usr/local/clang-3.9.0/bin/clang++
+  travis@9681b443a3fb:~$ which clang++
+  /usr/local/clang-5.0.0/bin/clang++
 
-  travis@d7593ec7547b:~$ clang++ --version
-  clang version 3.9.0 (tags/RELEASE_390/final)
+  travis@9681b443a3fb:~$ clang++ --version
+  clang version 5.0.0 (tags/RELEASE_500/final)
   Target: x86_64-unknown-linux-gnu
   Thread model: posix
+  InstalledDir: /usr/local/clang-5.0.0/bin
 
-  travis@d7593ec7547b:~$ which python3
+  travis@9681b443a3fb:~$ which python3
   /usr/bin/python3
 
-  travis@d7593ec7547b:~$ python3 --version
+  travis@9681b443a3fb:~$ python3 --version
   Python 3.4.3
 
-  travis@d7593ec7547b:~$ which pip3
+  travis@9681b443a3fb:~$ which pip3
   /usr/bin/pip3
 
-  travis@d7593ec7547b:~$ pip3 --version
+  travis@9681b443a3fb:~$ pip3 --version
   pip 1.5.4 from /usr/lib/python3/dist-packages (python 3.4)
 
-  travis@d7593ec7547b:~$ python3 -c 'import requests'
+  travis@9681b443a3fb:~$ python3 -c 'import requests'
 
 Compare it with real Travis CI job:
 
-* https://travis-ci.org/travis-ci-tester/travis-trusty-env/jobs/279929195
+* https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/320739476
 
 Run GUI
 -------
@@ -69,7 +70,7 @@ Run GUI
 You can start GUI which use X11 by allowing connection to localhost and
 exporting DISPLAY:
 
-.. code-block:: shell
+.. code-block:: none
 
   > xhost +
   > docker run -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ruslo/hunter-travis-trusty bash
@@ -84,7 +85,7 @@ Update
 Note that image is static in sense that there is no git repository fetch on
 container start, you have to do it manually:
 
-.. code-block:: shell
+.. code-block:: none
 
 
   travis@d7593ec7547b:~$ (cd polly && git pull)
@@ -95,7 +96,7 @@ container start, you have to do it manually:
 If there will be significant changes introduced and new docker image pushed
 then you can do:
 
-.. code-block:: shell
+.. code-block:: none
 
   > docker pull ruslo/travis-linux-docker
 
@@ -104,7 +105,7 @@ Testing
 
 Run some test:
 
-.. code-block:: shell
+.. code-block:: none
 
   travis@d7593ec7547b:~$ cd hunter
   travis@d7593ec7547b:~$ TOOLCHAIN=gcc PROJECT_DIR=examples/GTest ./jenkins.py --verbose --clear-except
@@ -140,8 +141,25 @@ Build
 
 To build image yourself:
 
-.. code-block:: shell
+.. code-block:: none
 
   > git clone http://github.com/hunter-packages/travis-linux-docker
   > cd travis-linux-docker
   [travis-linux-docker]> docker build .
+
+Push if needed:
+
+.. code-block:: none
+
+   ---> Running in a284f95cb56e
+   ---> edfa2debece5
+  Removing intermediate container a284f95cb56e
+  Successfully built edfa2debece5
+
+.. code-block:: none
+
+  > docker tag edfa2debece5 ruslo/travis-linux-docker
+  > docker push ruslo/travis-linux-docker
+
+Documentation:
+* https://docs.docker.com/engine/reference/commandline/push/
