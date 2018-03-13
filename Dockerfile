@@ -6,7 +6,7 @@
 # Environment analyze:
 # * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/279929194
 
-FROM travisci/ci-garnet:packer-1513287432-2ffda03
+FROM travisci/ci-garnet:packer-1515445631-7dfb2e1
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
@@ -23,9 +23,8 @@ ENV PATH /usr/local/clang-5.0.0/bin:$PATH
 
 # From '.travis.yml':
 # packages:
-#   - g++-5
-#   - gcc-5
-RUN sudo apt-get -y install g++-5 gcc-5
+#   - g++-7
+RUN sudo apt-get -y install g++-7
 
 # Dependencies for Qt:
 # * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
@@ -69,10 +68,10 @@ ENV PATH /home/travis/polly/bin:$PATH
 
 WORKDIR /home/travis
 
-ENV TOOLCHAIN android-ndk-r10e-api-19-armeabi-v7a-neon # for NDK downloading
+ENV TOOLCHAIN android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 # for NDK downloading
 RUN install-ci-dependencies.py
 
 ENV TOOLCHAIN ""
 
 ENV PATH /home/travis/_ci/cmake/bin:$PATH
-ENV ANDROID_NDK_r10e /home/travis/_ci/android-ndk-r10e
+ENV ANDROID_NDK_r16b /home/travis/_ci/android-ndk-r16b
