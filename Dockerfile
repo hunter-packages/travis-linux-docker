@@ -6,7 +6,7 @@
 # Environment analyze:
 # * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/279929194
 
-FROM travisci/ci-garnet:packer-1515445631-7dfb2e1
+FROM travisci/ci-garnet:packer-1512502276-986baf0
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
@@ -68,10 +68,10 @@ ENV PATH /home/travis/polly/bin:$PATH
 
 WORKDIR /home/travis
 
-ENV TOOLCHAIN android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 # for NDK downloading
+ENV TOOLCHAIN android-ndk-r17-api-24-arm64-v8a-clang-libcxx14 # for NDK downloading
 RUN install-ci-dependencies.py
 
 ENV TOOLCHAIN ""
 
 ENV PATH /home/travis/_ci/cmake/bin:$PATH
-ENV ANDROID_NDK_r16b /home/travis/_ci/android-ndk-r16b
+ENV ANDROID_NDK_r17 /home/travis/_ci/android-ndk-r17
