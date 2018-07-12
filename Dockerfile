@@ -43,7 +43,9 @@ RUN sudo apt-get install -y python3-pip
 
 RUN sudo apt-get install libncurses5:i386 libstdc++6:i386 zlib1g:i386
 
+# For upload
 RUN pip3 install --user requests
+RUN pip3 install --user gitpython
 
 # Install tools
 WORKDIR /home/travis
