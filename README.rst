@@ -162,4 +162,11 @@ Push if needed:
   > docker push ruslo/travis-linux-docker
 
 Documentation:
+
 * https://docs.docker.com/engine/reference/commandline/push/
+
+CUDA
+----
+
+* Branch ``sudo.cuda``
+* ``docker run -it ruslo/travis-linux-docker-sudo.cuda bash``
