@@ -49,6 +49,15 @@ RUN sudo apt-get install libncurses5:i386 libstdc++6:i386 zlib1g:i386
 RUN pip3 install --user requests
 RUN pip3 install --user gitpython
 
+# Install CUDA {
+ENV CUDA_INSTALL_PATH ${HOME}/opt/cuda
+RUN mkdir -p ${CUDA_INSTALL_PATH}
+RUN wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux -O cuda-install.run
+RUN chmod +x cuda-install.run
+RUN ./cuda-install.run --silent --toolkit --toolkitpath=${CUDA_INSTALL_PATH}
+ENV PATH ${CUDA_INSTALL_PATH}/bin:${PATH}
+# }
+
 # Install tools
 WORKDIR /home/travis
 
