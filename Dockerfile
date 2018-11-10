@@ -3,10 +3,7 @@
 # Using tag from https://hub.docker.com/r/travisci/ci-garnet/tags/ because tag 'latest' not found
 # (see issue https://github.com/travis-ci/travis-ci/issues/7518)
 
-# Environment analyze:
-# * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/279929194
-
-FROM travisci/ci-garnet:packer-1512502276-986baf0
+FROM travisci/ci-garnet:packer-1512502259-986baf0
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
