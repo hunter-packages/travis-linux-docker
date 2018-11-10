@@ -23,6 +23,11 @@ ENV PATH /usr/local/clang-5.0.0/bin:$PATH
 #   - g++-7
 RUN sudo apt-get -y install g++-7
 
+# From '.travis.yml':
+# packages:
+#   - gfortran
+RUN sudo apt-get -y install gfortran
+
 # Dependencies for Qt:
 # * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
 RUN sudo apt-get install -y libegl1-mesa-dev libgl1-mesa-dev libegl1-mesa-drivers
