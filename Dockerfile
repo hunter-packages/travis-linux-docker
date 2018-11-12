@@ -3,7 +3,7 @@
 # Using tag from https://hub.docker.com/r/travisci/ci-garnet/tags/ because tag 'latest' not found
 # (see issue https://github.com/travis-ci/travis-ci/issues/7518)
 
-FROM travisci/ci-garnet:packer-1512502259-986baf0
+FROM travisci/ci-garnet:packer-1512502276-986baf0
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
@@ -50,13 +50,19 @@ RUN pip3 install --user requests
 RUN pip3 install --user gitpython
 
 # Install CUDA {
-ENV CUDA_INSTALL_PATH ${HOME}/opt/cuda
-RUN mkdir -p ${CUDA_INSTALL_PATH}
+WORKDIR /home/travis
+
+ENV CUDA_INSTALL_PATH /usr/local/cuda-10.0/
+RUN sudo mkdir -p ${CUDA_INSTALL_PATH}
 RUN wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux -O cuda-install.run
 RUN chmod +x cuda-install.run
-RUN ./cuda-install.run --silent --toolkit --toolkitpath=${CUDA_INSTALL_PATH}
+RUN sudo ./cuda-install.run --silent --toolkit --toolkitpath=${CUDA_INSTALL_PATH}
 ENV PATH ${CUDA_INSTALL_PATH}/bin:${PATH}
 # }
+
+# Dirty hack to fix mxnet compile error:
+# * OSError: libcuda.so.1: cannot open shared object file: No such file or directory
+RUN sudo ln -s /usr/local/cuda-10.0/lib64/stubs/libcuda.so /usr/lib/x86_64-linux-gnu/libcuda.so.1
 
 # Install tools
 WORKDIR /home/travis
