@@ -6,7 +6,7 @@
 # Environment analyze:
 # * https://travis-ci.org/travis-ci-tester/travis-trusty-env/builds/279929194
 
-FROM travisci/ci-garnet:packer-1512502276-986baf0
+FROM travisci/ci-sardonyx:packer-1541445940-e193d27
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
@@ -19,7 +19,7 @@ RUN sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
 RUN sudo apt-get update
 
-ENV PATH /usr/local/clang-5.0.0/bin:$PATH
+ENV PATH /usr/local/clang-7.0.0/bin:$PATH
 
 # From '.travis.yml':
 # packages:
