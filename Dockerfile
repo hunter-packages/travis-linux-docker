@@ -34,6 +34,9 @@ RUN sudo apt-get install -y libegl1-mesa-dev libgl1-mesa-dev libegl1-mesa-driver
 # * https://github.com/travis-ci-tester/travis-test-linux-glu
 RUN sudo apt-get install -y libglu1-mesa-dev
 
+# For Qt
+RUN sudo apt-get install -y gettext flex libgcrypt11-dev
+
 # Dependencies for Qt Android development:
 # * http://superuser.com/a/360398/252568
 RUN sudo dpkg --add-architecture i386
