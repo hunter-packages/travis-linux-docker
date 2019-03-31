@@ -1,9 +1,16 @@
 # https://docs.travis-ci.com/user/common-build-problems/#Running-a-Container-Based-Docker-Image-Locally
 
-# Using tag from https://hub.docker.com/r/travisci/ci-garnet/tags/ because tag 'latest' not found
+# From top of the travis log:
+#
+#   instance: travis-job-8e411e98-ed41-4479-86ab-ab46e24a6bd4 travis-ci-sardonyx-xenial-1547455603-2c98a19 (via amqp)
+#
+# Go to https://hub.docker.com/r/travisci
+# -> https://hub.docker.com/r/travisci/ci-sardonyx
+#
+# Using tag from https://hub.docker.com/r/travisci/ci-sardonyx/tags/ because tag 'latest' not found
 # (see issue https://github.com/travis-ci/travis-ci/issues/7518)
 
-FROM travisci/ci-garnet:packer-1512502276-986baf0
+FROM travisci/ci-sardonyx:packer-1547455648-2c98a19
 
 MAINTAINER Ruslan Baratov <ruslan_baratov@yahoo.com>
 
