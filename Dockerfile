@@ -23,7 +23,7 @@ RUN sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
 RUN sudo apt-get update
 
-ENV PATH /usr/local/clang-5.0.0/bin:$PATH
+ENV PATH /usr/local/clang-7.0.0/bin:$PATH
 
 # From '.travis.yml':
 # packages:
