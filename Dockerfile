@@ -34,6 +34,7 @@ RUN sudo apt-get -y install g++-7
 # packages:
 #   - gfortran
 RUN sudo apt-get -y install gfortran
+RUN sudo apt-get -y install gfortran-7
 
 # Dependencies for Qt:
 # * https://github.com/ruslo/hunter/wiki/pkg.qt#pitfalls
